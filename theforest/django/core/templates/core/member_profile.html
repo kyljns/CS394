@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ member.first_name }} {{ member.last_name }}{% endblock %}
+
+{% block styles %}
+<style>
+  .profile-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-photo {
+    border-radius: 12px;
+    width: 150px;
+    margin-bottom: 20px;
+  }
+
+  .profile-detail {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .profile-label {
+    font-weight: bold;
+    color: #555;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="profile-container">
+    <h2>{{ member.first_name }} {{ member.last_name }}</h2>
+
+    {% if member.photo %}
+      <img class="profile-photo" src="{{ member.photo.url }}" alt="Photo of {{ member.first_name }}">
+    {% endif %}
+
+    {% if member.birth_date %}
+      <p class="profile-detail">
+        <span class="profile-label">Born:</span> {{ member.birth_date }}
+      </p>
+    {% endif %}
+
+    {% if member.death_date %}
+      <p class="profile-detail">
+        <span class="profile-label">Died:</span> {{ member.death_date }}
+      </p>
+    {% endif %}
+
+    {% if member.bio %}
+      <p class="profile-detail">
+        <span class="profile-label">Bio:</span> {{ member.bio }}
+      </p>
+    {% endif %}
+
+    <p><a href="{% url 'home' %}">&larr; Back to Home</a></p>
+  </div>
+{% endblock %}

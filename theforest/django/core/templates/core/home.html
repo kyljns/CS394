@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Forest</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      justify-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid-item {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 120px;
+      height: 120px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .grid-item:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    .grid-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>The Forest</h1>
+
+  <div class="grid">
+    {% if user.is_authenticated and user.family_member %}
+    <div class="grid-item">
+      <a href="{% url 'member_profile' user.family_member.id %}">
+        <img src="https://img.icons8.com/ios-filled/50/user-male-circle.png" alt="My Profile">
+        <div class="label">My Profile</div>
+      </a>
+    </div>
+  {% endif %}
+    {% if user.is_authenticated and user.profile.role == 'parent' %}
+  <div class="grid-item">
+    <a href="{% url 'add_member' %}">
+      <img src="https://img.icons8.com/ios-filled/50/add-user-group-man-man.png" alt="Add Member">
+      <div class="label">Add Member</div>
+    </a>
+  </div>
+{% endif %}
+
+    <div class="grid-item">
+      <a href="{% url 'family_tree' %}">
+        <img src="https://cdn-icons-png.flaticon.com/512/9243/9243351.png" alt="Family Tree" width="40" height="40">
+        <div class="label">Family Tree</div>
+      </a>
+    </div>
+
+
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/timeline.png" alt="Timeline">
+      <div class="label">Timeline</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/camera.png" alt="Photo Album">
+      <div class="label">Photo Album</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/dice.png" alt="Games">
+      <div class="label">Games</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/document.png" alt="Documents">
+      <div class="label">Documents</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/conference.png" alt="Meetings">
+      <div class="label">Meetings</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/chat.png" alt="Messaging">
+      <div class="label">Messaging</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://img.icons8.com/ios-filled/50/settings.png" alt="Settings">
+      <div class="label">Settings</div>
+    </div>
+  </div>
+</body>
+</html>
